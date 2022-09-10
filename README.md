@@ -29,6 +29,9 @@ start client: cd/client && npm start
 - the repo contains heroku configuration (Procfile in root and heroku-postbuild script in package.json in root)
 - environment variables will need to be set via heroku cli or website
 
+- important: set env variable https://stackoverflow.com/questions/73374091/heroku-rails-react-eresolve-could-not-resolve
+  NPM_CONFIG_LEGACY_PEER_DEPS = true to avoid crashing builds due to legacy package issues
+
 # Features:
 
 ## Done:
