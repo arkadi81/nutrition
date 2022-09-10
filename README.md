@@ -26,7 +26,8 @@ start client: cd/client && npm start
 
 ## deployment on heroku
 
-the repo contains heroku configuration - environment variables will need to be set via heroku cli or website
+- the repo contains heroku configuration (Procfile in root and heroku-postbuild script in package.json in root)
+- environment variables will need to be set via heroku cli or website
 
 # Features:
 

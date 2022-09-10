@@ -1,6 +1,8 @@
 require("dotenv").config(); // import env variables from .env
 const debug = require("debug")("app:general");
 
+const path = require("path");
+
 const express = require("express");
 const app = express();
 
@@ -25,14 +27,26 @@ app.use(
 // 3rd party middleware
 app.use(helmet());
 
-if (process.env.NODE_ENV !== "production") {
+// routes
+app.use("/api/test", genericRestApiRouter); // generic rest api could go here for testing / further dev
+
+//deployment configuration
+if (process.env.NODE_ENV === "production") {
+  // production, provide static route to client
+  app.use(express.static(path.join(__dirname, "/client/build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  });
+} else {
+  // if (process.env.NODE_ENV !== "production") {
   app.use(morgan("tiny"));
   // console.log("Morgan enabled...");
   debug("Morgan enabled");
+  app.get("/", (req, res) => {
+    res.send("Api running...");
+  });
+  // }
 }
-
-// routes
-app.use("/api/test", genericRestApiRouter); // generic rest api could go here for testing / further dev
 
 // app
 app.listen(process.env.PORT || 3000, () => {
