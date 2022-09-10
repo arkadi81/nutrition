@@ -18,6 +18,11 @@
     "url": "https://github.com/arkadi81/nutrition/issues"
   },
   "homepage": "https://github.com/arkadi81/nutrition#readme",
+
+  "engines": {
+    "node": "16.16.0",
+    "npm": "8.14.0"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "debug": "^4.3.4",
